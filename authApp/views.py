@@ -12,7 +12,7 @@ import os
 
 # Initialize Supabase client
 url = os.getenv('SUPABASE_URL')
-key = os.getenv('SUPABASE_SERVICE_ROLE_KEY')
+key = os.getenv('NEXT_PUBLIC_SUPABASE_ANON_KEY')
 supabase: Client = create_client(url, key)
 
 # User Registration
