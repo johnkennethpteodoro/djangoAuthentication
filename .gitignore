@@ -16,7 +16,7 @@ local_settings.py
 *.key
 
 # Database files
-db.sqlite3
+# db.sqlite3
 *.db
 
 # Static and media files
