@@ -43,15 +43,24 @@ def login_view(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         
-        # Authenticate with the Django backend (Supabase is being used for auth)
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            next_url = request.POST.get('next') or request.GET.get('next') or 'home'
-            return redirect(next_url)
-        else:
-            error_message = "Invalid Credentials!"
+        # Attempt to sign in with Supabase
+        try:
+            user = supabase.auth.sign_in({
+                'email': username,
+                'password': password
+            })
+            
+            if user:
+                login(request, user)
+                next_url = request.POST.get('next') or request.GET.get('next') or 'home'
+                return redirect(next_url)
+            else:
+                error_message = "Invalid Credentials!"
+        except Exception as e:
+            error_message = f"Error during login: {str(e)}"
+    
     return render(request, 'accounts/login.html', {'error': error_message})
+
 
 # User Logout
 def logout_view(request):
