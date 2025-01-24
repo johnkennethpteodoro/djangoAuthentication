@@ -53,12 +53,8 @@ WSGI_APPLICATION = 'authProject.wsgi.application'
 # Database setup (ensure correct environment variable parsing)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'DBNAME': os.getenv('DBNAME'),  
-        'USER': os.getenv('POSTGRES_USER'), 
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('POSTGRES_HOST'),  
-        'PORT': os.getenv('DBPORT'), 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
