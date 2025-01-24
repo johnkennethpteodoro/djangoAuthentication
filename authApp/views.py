@@ -1,23 +1,21 @@
-# To handle views and directs
+# views.py
+
 from django.shortcuts import render, redirect
-# To Import auth functions form Django
 from django.contrib.auth import authenticate, login, logout
-#The login_required decorator to protect views
 from django.contrib.auth.decorators import login_required
-# For class-based views[CBV]
 from django.contrib.auth.mixins import LoginRequiredMixin
-# For class-based views[CBV]
 from django.views import View
-# Import  the User class(model)
 from django.contrib.auth.models import User
-# Improt the RegisterForm from forms.py
 from .forms import RegisterForm
 from supabase import create_client, Client
 import os
+
+# Initialize Supabase client
 url = os.getenv('SUPABASE_URL')
 key = os.getenv('SUPABASE_KEY')
 supabase: Client = create_client(url, key)
 
+# User Registration
 def register_user(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -38,13 +36,15 @@ def register_user(request):
         form = RegisterForm()
     return render(request, 'accounts/register.html', {'form': form})
 
-
+# User Login
 def login_view(request):
     error_message = None
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        user = authenticate(request, username=username, password=password)  # Fix here
+        
+        # Authenticate with the Django backend (Supabase is being used for auth)
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             next_url = request.POST.get('next') or request.GET.get('next') or 'home'
@@ -53,24 +53,20 @@ def login_view(request):
             error_message = "Invalid Credentials!"
     return render(request, 'accounts/login.html', {'error': error_message})
 
-
-
+# User Logout
 def logout_view(request):
     logout(request)
     return redirect('login')
 
-
-#Home View
-#Using the decorator
+# Home View (Protected)
 @login_required
 def home_view(request):
     return render(request, 'auth1_app/home.html')
 
-# Protected View
+# Protected View using Class-Based View
 class ProtectedView(LoginRequiredMixin, View):
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
 
     def get(self, request):
         return render(request, 'registration/protected.html')
-
