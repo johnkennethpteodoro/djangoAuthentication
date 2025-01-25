@@ -7,7 +7,9 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-or@4nnx)l^84z_7!%e)qvp7yg&&k0hh$bt6)586jv_k=e2x@aj'
+
 DEBUG = True
+
 ALLOWED_HOSTS = ['.vercel.app']
 
 INSTALLED_APPS = [
