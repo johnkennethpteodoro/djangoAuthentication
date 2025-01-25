@@ -1,10 +1,10 @@
-# Coffeelax
+# djangoAuthentication
 
-Coffeelax is a modern web application built with **Next.js**, **Tailwind CSS**, and **Shadcn UI**. It integrates with a **MySQL** database to provide a robust and responsive user experience for coffee enthusiasts. Users can explore the menu, add items to their cart, view branch details, and more.
+DjangoAuthentication is a web application built with Django, Python, HTML, and CSS. It provides a secure authentication system, allowing users to create accounts, log in, and access protected pages. The app ensures a smooth and seamless experience for users to manage their authentication.
 
 ## Project Overview
 
-Coffeelax aims to deliver an interactive and user-friendly coffee ordering platform. The app fetches real-time data from an API and utilizes a MySQL database for data storage, ensuring efficient data management and persistence.
+DjangoAuthentication is designed to handle basic user authentication with features such as account creation, login functionality, and protected pages. It uses Django's built-in authentication system, making it easy to manage users, secure their data, and deliver a smooth user experience.
 
 ## Features
 
