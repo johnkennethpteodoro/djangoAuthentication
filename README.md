@@ -25,10 +25,16 @@ DjangoAuthentication is designed to handle basic user authentication with featur
 1. Clone the repository:
    
    ```bash
-   git clone https://github.com/username/coffeelax.git
-   cd coffeelax
+   git clone https://github.com/username/coffeelax.git](https://github.com/johnkennethpteodoro/djangoAuthentication.git
+   cd djangoauthentication
 
 2. Install dependencies
    
    ```bash
-   npm install
+   cd authProject
+   pip3 install -r requirements.txt
+
+3. Run the Django server
+   
+   ```bash
+   python3 manage.py runserver
